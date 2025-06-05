@@ -118,13 +118,6 @@ header {
     transition: background-color 0.3s ease; /* Transição para mudança de tema */
 }
 
-.logo {
-    font-family: var(--font-primary);
-    font-size: 1.8em;
-    font-weight: 700;
-    color: var(--light-text-color);
-    padding: 5px 0;
-}
 
 /* --- Navegação Desktop --- */
 .nav-desktop {
@@ -324,12 +317,15 @@ section p {
 }
 
 section img {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    width: 1024px;  /* Largura fixa */
+     /* Altura fixa */
 }
+
 
 section img:hover {
     transform: scale(1.02);
@@ -347,6 +343,84 @@ footer {
     transition: background-color 0.3s ease; /* Transição de tema */
 }
 
+
+/* No seu src/css/style.css */
+
+/* ... (seus estilos existentes) ... */
+
+/* Estilo para a nova seção Quiz */
+/* Se você quiser que ela tenha o mesmo estilo das seções sem fundo alternado */
+#quiz {
+    padding: 60px 20px; /* Adapte o padding conforme necessário */
+    display: flex;
+    flex-direction: row; /* Para desktop: conteúdo e imagem lado a lado */
+    align-items: center;
+    justify-content: center;
+    gap: 40px; /* Espaçamento entre o conteúdo e a imagem */
+    background-color: #fff; /* Fundo branco ou a cor padrão da sua seção */
+}
+
+#quiz .section-content {
+    flex: 1; /* Ocupa o espaço disponível */
+    max-width: 600px; /* Limita a largura do texto */
+}
+
+#quiz .section-image {
+    flex: 1; /* Ocupa o espaço disponível */
+    max-width: 400px; /* Limita a largura da imagem */
+}
+
+#quiz .section-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Opcional: bordas arredondadas para a imagem */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Opcional: sombra para a imagem */
+}
+
+#quiz h2 {
+    color: #0056b3; /* Cor do título */
+    margin-bottom: 20px;
+}
+
+#quiz p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+#quiz button {
+    padding: 12px 25px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Para garantir que o link não tenha underline */
+    display: inline-block; /* Para o botão não ocupar 100% da largura */
+    margin-top: 20px;
+}
+
+#quiz button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos responsivos para telas menores */
+@media (max-width: 768px) {
+    #quiz {
+        flex-direction: column; /* Em telas menores, empilha conteúdo e imagem */
+        text-align: center;
+    }
+
+    #quiz .section-content,
+    #quiz .section-image {
+        max-width: 100%; /* Ocupa a largura total */
+    }
+
+    #quiz .section-image {
+        margin-top: 30px; /* Espaçamento entre o texto e a imagem em mobile */
+    }
+}
 
 /* --- Responsividade (Media Queries) --- */
 @media (min-width: 768px) {
