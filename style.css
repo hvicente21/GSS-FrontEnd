@@ -1,0 +1,423 @@
+/* --- Reset CSS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.logo-image {
+    width: 65px; /* Defina uma largura e altura fixas para que fique um círculo perfeito */
+    height: 65px; /* Mesma largura e altura */
+    border-radius: 50%; /* Torna o elemento completamente redondo */
+    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer, cortando se necessário */
+    display: block; /* Remove qualquer espaçamento extra abaixo da imagem */
+    
+    
+}
+
+/* Opcional: ajustar o padding do .logo se a imagem ficar muito colada */
+.logo {
+    padding: 0 10px; /* Adiciona um padding interno ao redor da logo se necessário */
+    display: flex; /* Garante que a imagem esteja bem centralizada dentro do div .logo */
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Variáveis CSS (Paleta de Cores Inspirada na imagem_35f707.jpg e Temas) --- */
+:root {
+    /* Tema Padrão (Oceano) */
+    --primary-color-default: #0056b3;      /* Azul escuro */
+    --secondary-color-default: #003f7f;    /* Azul mais profundo */
+    --accent-color-default: #e67e22;       /* Laranja/Amarelo */
+    --text-color-default: #333333;         /* Cinza escuro */
+    --light-text-color-default: #ffffff;   /* Branco */
+    --background-light-default: #f8f9fa;   /* Fundo claro */
+    --background-alt-light-default: #e9ecef; /* Fundo ligeiramente mais escuro */
+    --header-footer-bg-default: #002b5c;   /* Azul muito escuro */
+
+    /* Tema Alerta */
+    --primary-color-alert: #dc3545;        /* Vermelho forte */
+    --secondary-color-alert: #b32d00;      /* Vermelho mais escuro */
+    --accent-color-alert: #ffc107;         /* Amarelo vibrante */
+    --text-color-alert: #495057;           /* Cinza mais escuro */
+    --light-text-color-alert: #ffffff;
+    --background-light-alert: #fff8f8;     /* Fundo rosa claro */
+    --background-alt-light-alert: #ffebeb; /* Fundo rosa um pouco mais escuro */
+    --header-footer-bg-alert: #a71d2a;     /* Vermelho vinho */
+
+    /* Tema Natureza */
+    --primary-color-nature: #28a745;       /* Verde vibrante */
+    --secondary-color-nature: #218838;     /* Verde mais escuro */
+    --accent-color-nature: #6f42c1;        /* Roxo para contraste */
+    --text-color-nature: #333333;
+    --light-text-color-nature: #ffffff;
+    --background-light-nature: #e6ffe6;    /* Verde pastel muito claro */
+    --background-alt-light-nature: #cce7bb; /* Verde pastel um pouco mais escuro */
+    --header-footer-bg-nature: #1e7e34;    /* Verde floresta */
+
+
+    /* Variáveis ativas - serão atualizadas pelo JS */
+    --primary-color: var(--primary-color-default);
+    --secondary-color: var(--secondary-color-default);
+    --accent-color: var(--accent-color-default);
+    --text-color: var(--text-color-default);
+    --light-text-color: var(--light-text-color-default);
+    --background-light: var(--background-light-default);
+    --background-alt-light: var(--background-alt-light-default);
+    --header-footer-bg: var(--header-footer-bg-default);
+
+
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+
+    --spacing-unit: 20px;
+    --max-content-width: 1200px;
+    --header-height: 70px; /* Altura do header para o padding do menu mobile */
+}
+
+body {
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-light);
+    scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição para mudança de tema */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* Para desabilitar o scroll do body quando o menu mobile está aberto */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--header-footer-bg);
+    color: var(--light-text-color);
+    padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    height: var(--header-height);
+    transition: background-color 0.3s ease; /* Transição para mudança de tema */
+}
+
+.logo {
+    font-family: var(--font-primary);
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--light-text-color);
+    padding: 5px 0;
+}
+
+/* --- Navegação Desktop --- */
+.nav-desktop {
+    display: none; /* Oculta por padrão em mobile */
+}
+
+.nav-desktop ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-desktop ul li {
+    margin-left: var(--spacing-unit);
+}
+
+.nav-desktop ul li a {
+    color: var(--light-text-color);
+    font-weight: 400;
+    padding: 5px 0;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-desktop ul li a:hover,
+.nav-desktop ul li a.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+/* --- Menu Hambúrguer (Mobile) --- */
+.menu-hamburguer {
+    width: 30px;
+    height: 20px;
+    display: flex; /* Visível por padrão em mobile */
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1100; /* Acima do menu mobile */
+    margin-left: var(--spacing-unit); /* Espaço entre ícones de tema e hambúrguer */
+}
+
+.menu-hamburguer span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--light-text-color);
+    transition: all 0.3s ease;
+}
+
+/* Animação do hambúrguer */
+.menu-hamburguer.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-hamburguer.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburguer.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- Navegação Mobile --- */
+.nav-mobile {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Esconde o menu fora da tela */
+    width: 75%; /* Ocupa 75% da largura da tela */
+    max-width: 300px; /* Limita a largura em telas maiores */
+    height: 100%;
+    background-color: var(--secondary-color); /* Fundo do menu mobile */
+    box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+    transition: right 0.3s ease, background-color 0.3s ease; /* Transição para mudança de tema */
+    z-index: 1050;
+    padding-top: var(--header-height); /* Espaço para não cobrir o header */
+}
+
+.nav-mobile.active {
+    right: 0; /* Mostra o menu */
+}
+
+.nav-mobile ul {
+    padding: var(--spacing-unit) 0;
+}
+
+.nav-mobile ul li {
+    padding: 15px var(--spacing-unit);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-mobile ul li:last-child {
+    border-bottom: none;
+}
+
+.nav-mobile ul li a {
+    color: var(--light-text-color);
+    font-size: 1.1em;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.nav-mobile ul li a:hover,
+.nav-mobile ul li a.active { /* Indicação da seção atual no menu mobile */
+    background-color: rgba(255,255,255,0.1);
+    color: var(--accent-color); /* Realça a cor do texto ativo */
+}
+
+/* --- Overlay --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Escurece o fundo */
+    z-index: 1020;
+    display: none; /* Escondido por padrão */
+}
+
+.overlay.active {
+    display: block; /* Mostra quando o menu está ativo */
+}
+
+/* --- Estilos dos Ícones de Tema --- */
+.theme-switcher {
+    display: flex;
+    gap: 15px;
+    margin-left: auto; /* Empurra para a direita no desktop */
+    /* Em mobile, a ordem é ajustada via flex order no media query */
+    order: 1; /* Garante que fiquem à esquerda do hambúrguer no mobile */
+}
+
+.theme-icon {
+    font-size: 1.3em;
+    color: rgba(255, 255, 255, 0.6); /* Cor padrão dos ícones */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.theme-icon:hover {
+    color: var(--light-text-color);
+}
+
+.theme-icon.active-theme {
+    color: var(--light-text-color); /* Cor para o tema ativo */
+    text-shadow: 0 0 8px rgba(255,255,255,0.8); /* Brilho suave */
+}
+
+
+/* --- Main Content Sections (mantém as transições de cores aqui também) --- */
+section {
+    padding: var(--spacing-unit) var(--spacing-unit);
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-unit);
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição de tema */
+}
+
+section.section-alt-bg {
+    background-color: var(--background-alt-light);
+}
+
+/* Ajustes para a seção Hero */
+.section-hero {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding-top: calc(var(--spacing-unit) * 2);
+    padding-bottom: calc(var(--spacing-unit) * 2);
+    transition: background-color 0.3s ease; /* Transição de tema */
+}
+
+.section-hero h2, .section-hero p {
+    color: var(--light-text-color);
+    transition: color 0.3s ease; /* Transição de tema */
+}
+
+section h2 {
+    font-family: var(--font-primary);
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: calc(var(--spacing-unit) / 2);
+    font-weight: 700;
+    transition: color 0.3s ease; /* Transição de tema */
+}
+
+section p {
+    font-size: 1.1em;
+    margin-bottom: calc(var(--spacing-unit) / 2);
+    max-width: 500px;
+}
+
+section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+section img:hover {
+    transform: scale(1.02);
+}
+
+
+/* --- Rodapé --- */
+footer {
+    background-color: var(--header-footer-bg);
+    color: var(--light-text-color);
+    text-align: center;
+    padding: var(--spacing-unit);
+    font-size: 0.9em;
+    margin-top: 0;
+    transition: background-color 0.3s ease; /* Transição de tema */
+}
+
+
+/* --- Responsividade (Media Queries) --- */
+@media (min-width: 768px) {
+    .nav-desktop {
+        display: block; /* Mostra o menu desktop */
+        margin-left: auto; /* Empurra a navegação para a direita */
+    }
+
+    .menu-hamburguer {
+        display: none; /* Esconde o hambúrguer em desktop */
+    }
+
+    .nav-mobile {
+        display: none; /* Garante que o menu mobile esteja oculto */
+    }
+
+    .theme-switcher {
+        order: unset; /* Remove a ordem definida para mobile */
+        margin-left: var(--spacing-unit); /* Espaço entre nav desktop e ícones */
+    }
+
+    section {
+        flex-direction: row;
+        text-align: left;
+        justify-content: space-around;
+    }
+
+    section:nth-of-type(even) {
+        flex-direction: row-reverse;
+    }
+
+    .section-content {
+        align-items: flex-start;
+    }
+
+    header {
+        padding: calc(var(--spacing-unit) / 2) calc(var(--spacing-unit) * 2);
+    }
+}
+
+@media (max-width: 767px) {
+    header {
+        flex-direction: row; /* Mantém logo, tema e hambúrguer na mesma linha */
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-unit);
+    }
+
+    .logo {
+        margin-right: auto; /* Empurra o logo para a esquerda */
+    }
+
+    .nav-desktop {
+        display: none; /* Garante que o menu desktop esteja oculto */
+    }
+
+    .theme-switcher {
+        /* Permanece à esquerda do hambúrguer, com espaçamento */
+        margin-right: var(--spacing-unit);
+        order: 1; /* Para garantir que apareça antes do hambúrguer se necessário */
+    }
+
+    .menu-hamburguer {
+        order: 2; /* Para garantir que apareça depois dos ícones de tema */
+    }
+
+    section h2 {
+        font-size: 2em;
+    }
+
+    section p {
+        font-size: 1em;
+    }
+}
