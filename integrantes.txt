@@ -1,3 +1,7 @@
 Henrique Vicente RM:564116
 Matheus Cerciari Reis RM:565817
 Arthur Gaspare Gil RM:555746
+
+Link repositorio:https://github.com/hvicente21/GSS-FrontEnd/tree/main
+
+Link pages:https://hvicente21.github.io/GSS-FrontEnd/
